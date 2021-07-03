@@ -64,8 +64,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\PrefabManagerBehabior.cs" />
     <Compile Include="Assets\Scripts\PlayerArrowBehavior.cs" />
     <Compile Include="Assets\Scripts\PlayerTargetBehabior.cs" />
+    <Compile Include="Assets\Scripts\PrefabManagerBehabior_.cs" />
+    <Compile Include="Assets\Scripts\ScoreBehabior.cs" />
+    <Compile Include="Assets\Scripts\SongManager.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

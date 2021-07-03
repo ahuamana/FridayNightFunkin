@@ -5,51 +5,68 @@ using UnityEngine.UI;
 
 public class PlayerTargetBehabior : MonoBehaviour
 {
-    public Text scoreText;
-
-    public float Points;
-    public float excellentPoints = 100;
-    public float okPoints = 75;
-    public float goodPoints = 50;
 
     public float excellentPress; //3.41 - 3.49  //--> 3.45
     public float okPress; //2.55 - 3.4
     public float goodPress;//3.5 -- 3.6
     public float badPress;//
 
+    ScoreBehabior scoreText;
 
-    private void Start()
+    private void Awake()
     {
-        scoreText.text = "0";
+        scoreText = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreBehabior>();
     }
 
     private void Update()
     {
         var positionY = this.transform.position.y;
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && (positionY < excellentPress + 0.04) && (positionY > excellentPress - 0.04))
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            Debug.Log("Excellent Press!!!");
-            Points += excellentPoints;
-            scoreText.text = Points.ToString();
+            Debug.Log("LeftArrow pressed!!!");
+            checkPositionY(positionY);
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && (positionY < okPress) && (positionY > excellentPress - 1))
+        if (Input.GetKeyDown(KeyCode.RightArrow) )
         {
-            Debug.Log("Ok Press!!!");
-            Points += okPoints;
-            scoreText.text = Points.ToString();
+            Debug.Log("RightArrow pressed!!!");
+            checkPositionY(positionY);
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && (positionY > goodPress) && (positionY < excellentPress + 1))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Debug.Log("Good Press!!!");
-            Points += goodPoints;
-            scoreText.text = Points.ToString();
+            Debug.Log("UpArrow pressed!!!");
+            checkPositionY(positionY);
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && (positionY > badPress))
+        if (Input.GetKeyDown(KeyCode.DownArrow) )
         {
-            Debug.Log("Bad Press!!!");
+            Debug.Log("DownArrow pressed!!!");
+            checkPositionY(positionY);
         }
 
     }
+
+    public void checkPositionY( float positionY)
+    {
+
+        if ( (positionY < excellentPress + 0.04) && (positionY > excellentPress - 0.04))
+        {
+            scoreText.ExcellentPressExecution();
+        }
+        if ( (positionY < okPress) && (positionY > excellentPress - 1))
+        {
+            scoreText.OkPressExecution();
+        }
+        if ( (positionY > goodPress) && (positionY < excellentPress + 1))
+        {
+            scoreText.GoodPressExecution();
+        }
+        if ((positionY > badPress))
+        {
+            scoreText.BadPressExecution();
+        }
+
+    }
+
+    
 
 }
